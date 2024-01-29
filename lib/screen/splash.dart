@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:personal_portofolio/screen/base.dart';
 import 'package:personal_portofolio/utils/constants.dart';
 
 class Splash extends StatefulWidget {
@@ -10,6 +11,19 @@ class Splash extends StatefulWidget {
 }
 
 class SplashState extends State<Splash> {
+
+  @override
+  void initState() {
+    super.initState();
+    Future.delayed(const Duration(seconds: 3), () {
+      Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => const Base()
+          )
+      );
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
