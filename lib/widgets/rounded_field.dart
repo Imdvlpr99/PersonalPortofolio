@@ -26,23 +26,25 @@ class RoundedField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: backgroundColor! ?? mainColor,
-        borderRadius: BorderRadius.circular(borderRadius ?? 25)
-      ),
-      child: Padding(
-        padding: EdgeInsets.symmetric(
-            vertical: paddingVertical ?? 5,
-            horizontal: paddingHorizontal ?? 10
+    return Center(
+      child: Container(
+        decoration: BoxDecoration(
+            color: backgroundColor ?? mainColor,
+            borderRadius: BorderRadius.circular(borderRadius ?? 25)
         ),
-        child: Text(
-          text,
-          textAlign: TextAlign.center,
-          style: GoogleFonts.poppins().copyWith(
-            color: fontColor ?? ashLavender,
-            fontSize: fontSize ?? 18,
-            fontWeight: fontWeight ?? FontWeight.w600
+        child: Padding(
+          padding: EdgeInsets.symmetric(
+              vertical: paddingVertical ?? 5,
+              horizontal: paddingHorizontal ?? 10
+          ),
+          child: Text(
+            text,
+            textAlign: TextAlign.center,
+            style: GoogleFonts.poppins().copyWith(
+                color: fontColor ?? ashLavender,
+                fontSize: fontSize ?? 18,
+                fontWeight: fontWeight ?? FontWeight.w600
+            ),
           ),
         ),
       ),
