@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:personal_portofolio/utils/constants.dart';
 
@@ -11,6 +12,7 @@ class RoundedField extends StatelessWidget {
   final double? fontSize;
   final FontWeight? fontWeight;
   final String text;
+  final bool isEnabled;
 
   const RoundedField({
     super.key,
@@ -22,6 +24,7 @@ class RoundedField extends StatelessWidget {
     this.paddingHorizontal,
     this.fontSize,
     this.fontWeight,
+    this.isEnabled = false,
   });
 
   @override
@@ -29,7 +32,7 @@ class RoundedField extends StatelessWidget {
     return Center(
       child: Container(
         decoration: BoxDecoration(
-            color: backgroundColor ?? mainColor,
+            color: isEnabled ? backgroundColor ?? mainColor : Colors.transparent,
             borderRadius: BorderRadius.circular(borderRadius ?? 25)
         ),
         child: Padding(

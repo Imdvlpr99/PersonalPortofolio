@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:personal_portofolio/utils/constants.dart';
+import 'package:personal_portofolio/utils/utils.dart';
 import 'package:personal_portofolio/widgets/rounded_field.dart';
 
 class CustomNavBar extends StatefulWidget {
@@ -18,41 +19,51 @@ class CustomNavBar extends StatefulWidget {
 }
 
 class CustomNavBarState extends State<CustomNavBar> {
-  var currentIndex = 0;
+  var selectedIndex = 0;
 
   @override
   Widget build(BuildContext context) {
     return Center(
       child: Container(
-        height: 60,
+        height: 55,
         decoration: BoxDecoration(
           color: mainColor,
           borderRadius: BorderRadius.circular(55),
-          boxShadow: [
-            BoxShadow(
-              color: primaryGray.withOpacity(0.5),
-              blurRadius: 30,
-              offset: const Offset(0, 10),
-            ),
-          ],
         ),
         child: SingleChildScrollView(
           scrollDirection: Axis.horizontal,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: widget.menuList.map((menuText) {
-              return Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10),
-                child: RoundedField(
-                  text: menuText,
-                  backgroundColor: tertiaryPurple,
-                  borderRadius: 50,
-                  paddingVertical: 7,
-                  paddingHorizontal: 15,
-                ),
-              );
-            }).toList(),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 5),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: widget.menuList.asMap().entries.map((entry) {
+                String menuText = entry.value;
+
+                return Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 5),
+                  child: InkWell(
+                    onTap: () {
+                      setState(() {
+                        selectedIndex = entry.key;
+                      });
+                      widget.onMenuChange?.call(selectedIndex);
+                      Utils.getLogger().d(selectedIndex);
+                    },
+                    child: Center(
+                      child: RoundedField(
+                        text: menuText,
+                        backgroundColor: tertiaryPurple,
+                        borderRadius: 50,
+                        paddingVertical: 7,
+                        paddingHorizontal: 15,
+                        fontSize: 16,
+                        isEnabled: selectedIndex == entry.key,
+                      ),
+                    ),
+                  ),
+                );
+              }).toList(),
+            ),
           ),
         ),
       ),
