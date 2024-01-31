@@ -3,6 +3,7 @@ import 'package:personal_portofolio/screen/about.dart';
 import 'package:personal_portofolio/screen/notes.dart';
 import 'package:personal_portofolio/screen/projects.dart';
 import 'package:personal_portofolio/utils/constants.dart';
+import 'package:personal_portofolio/utils/utils.dart';
 import 'package:personal_portofolio/widgets/custom_nav_bar.dart';
 
 import 'home.dart';
@@ -30,6 +31,13 @@ class BaseState extends State<Base> {
     const Notes()
   ];
 
+  static List<String> navMenu = [
+    'Home',
+    'About Me',
+    'Projects',
+    'Notes'
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,12 +54,12 @@ class BaseState extends State<Base> {
               child: Align(
                 alignment: Alignment.center,
                 child: CustomNavBar(
-                  menuList: [
-                    'Home',
-                    'About Me',
-                    'Projects',
-                    'Notes'
-                  ],
+                  menuList: navMenu,
+                  onMenuChange: (index) {
+                    setState(() {
+                      _selectedIndex = index;
+                    });
+                  },
                 ),
               )
           )
